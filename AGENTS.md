@@ -2,7 +2,9 @@
 
 Last verified: 2026-07-25
 
-This repository is a high-level router for making Raza's public products usable by agents. It should point to current sources and working examples, not freeze fast-changing specifications into long-lived instructions.
+This repository is the shared operating guide for making Raza's websites and public pages highly discoverable, readable, and usable by agents. It replaces duplicated agent-readiness instructions in individual product repositories.
+
+Keep this repository as a high-level router to current sources, decision rules, and working examples. Do not turn it into a frozen copy of fast-changing specifications.
 
 ## Start here
 
@@ -10,6 +12,27 @@ This repository is a high-level router for making Raza's public products usable 
 2. Read `sources.md` for current external sources and local reference implementations.
 3. Read a focused note only when that optional capability actually applies.
 4. Read the target product's own `AGENTS.md` before changing it.
+
+The target repository remains authoritative for product behavior, framework commands, design, copy, and deployment. This repository is authoritative for the shared agent-readiness method.
+
+## Expected workflow
+
+This guide supports two entry points:
+
+- **Build mode:** include agent-readable structure and truthful agent capabilities while a site is being built.
+- **Retrofit mode:** audit an existing local and live site, then add only the missing applicable capabilities.
+
+In either mode:
+
+1. Understand the real public product and its useful public actions.
+2. Scan the canonical live hostname before deciding what is missing.
+3. Classify checks as applicable, inapplicable, or already satisfied.
+4. Check current sources for each capability being changed.
+5. Implement through the target framework and existing hosting provider.
+6. Verify locally, deploy, and scan the canonical hostname again.
+7. Report what passed, what was intentionally omitted, and any operational work left.
+
+Do not copy this playbook into the target repository. A short pointer back here is enough when a persistent reference is useful.
 
 ## Mandatory freshness check
 

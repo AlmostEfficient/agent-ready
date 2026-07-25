@@ -2,7 +2,30 @@
 
 Last verified: 2026-07-25
 
-This repository records the high-level playbook used to make Raza's public products easier for agents to discover, read, and use. It is a map to current sources and proven local examples, not a frozen specification.
+This is the single reusable playbook for making Raza's websites and public pages extremely easy for agents to discover, read, search, and use.
+
+Point an agent here when:
+
+- a website or set of pages is being designed or built; or
+- a website is already finished and needs to become indexable, searchable, and LLM-reachable.
+
+The agent should apply this guide to the target repository. Do not duplicate the full setup or methodology into every product repository.
+
+## Recommended handoff
+
+Give the agent the target repository and canonical hostname, then say:
+
+> Use `/Users/raza/Projects/agent-ready` as the shared playbook. Make this site as agent-ready as its real product capabilities allow. Follow the target repo's own instructions, verify the live site, and do not invent endpoints or services for a score.
+
+If the site is not deployed yet, provide its intended hostname and hosting provider when known. The agent can still build the local surfaces, but DNS and live verification remain unfinished until a canonical hostname exists.
+
+## What belongs where
+
+`agent-ready` owns the reusable method, applicability rules, freshness policy, source index, and pointers to proven implementations.
+
+The target product repository owns its product truth, page content, framework integration, tests, and any small implementation files needed to expose that product to agents. It may contain a short pointer back here, but should not carry a copied version of this playbook.
+
+Nexus owns shared operational guidance and credentials for deployment, DNS, DNSSEC, and registrar automation.
 
 ## What “agent-ready” means here
 
@@ -34,9 +57,21 @@ Other checks are conditional:
 
 A high applicable score is more valuable than a larger raw score produced by fictional endpoints.
 
-## Shape of the rollout
+## The working loop
 
-The rollout used framework-native delivery rather than one shared package:
+Use the same loop whether agent readiness is designed in from the beginning or added after launch:
+
+1. **Understand:** read the target instructions and identify the site's meaningful public content and actions.
+2. **Baseline:** inspect the local implementation and run the current scanner against the canonical hostname when one exists.
+3. **Decide:** separate generally useful capabilities from conditional ones that would be fictional or misleading.
+4. **Research:** use `sources.md` and apply the freshness gate in `AGENTS.md`.
+5. **Implement:** use the target framework's native static files, routes, middleware, headers, and browser APIs.
+6. **Verify:** run repository checks, inspect actual HTTP behavior and browser registration, deploy through the existing provider, then scan the live hostname again.
+7. **Hand off:** state the achieved level, applicable passes, intentional omissions, deployment state, and any unpushed or unrelated local changes.
+
+## Typical implementation shape
+
+Prefer framework-native delivery rather than a shared runtime package:
 
 - Static metadata for crawl, summary, and skill discovery.
 - Edge or framework middleware for response headers and Markdown negotiation.
@@ -45,9 +80,9 @@ The rollout used framework-native delivery rather than one shared package:
 - Cloudflare HTTPS discovery records and zone-wide DNSSEC.
 - Provider-specific deployment followed by live scanner and browser verification.
 
-Use the reference implementations in `sources.md` to find the closest framework match. Copy the architectural shape, then re-check current specifications instead of copying old schemas blindly.
+Use the reference implementations in `sources.md` to find the closest framework match. Reuse the architectural shape, then re-check current specifications instead of copying old schemas blindly.
 
-## Products covered by the first rollout
+## Proven reference products
 
 | Product surface | High-level coverage |
 | --- | --- |
@@ -61,9 +96,9 @@ Use the reference implementations in `sources.md` to find the closest framework 
 
 “Baseline” refers to the generally applicable capability groups above, not a permanent list of files or endpoint schemas.
 
-## Verification story
+## Definition of done
 
-An implementation is not finished when files exist. Verify:
+The work is not finished when files exist or a deployment command succeeds. Verify:
 
 - the repository's own lint, test, and build commands;
 - the rendered site in a browser with no broken primary flow;
@@ -73,7 +108,15 @@ An implementation is not finished when files exist. Verify:
 - authoritative DNS records plus DNSSEC validation;
 - the deployed canonical hostname with a fresh readiness scan.
 
-The live site is the source of truth. A successful local build or deployment command is not enough.
+Then report:
+
+- the live hostname and achieved scanner level;
+- which applicable capabilities pass;
+- which capabilities were intentionally omitted and why;
+- whether DNS, deployment, and source control are fully complete;
+- any unrelated dirty work that was preserved.
+
+The live site is the source of truth.
 
 ## Operations boundary
 
