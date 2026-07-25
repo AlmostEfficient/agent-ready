@@ -42,4 +42,3 @@ When consulting a reference implementation:
 2. Inspect its deployment provider and framework version.
 3. Compare the implementation with the current external source.
 4. Reuse only the pattern that still applies.
-
